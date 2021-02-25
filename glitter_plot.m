@@ -1,4 +1,4 @@
-%% Experimental Pieces
+%% Centroids and individuals
 function glitter_plot(results, labels,shape,name)
 
 temp = (1:results.plotting.npart);
@@ -13,7 +13,7 @@ end
 c = linspace(1,10,length(results.compromise.eigenvec)); %purdy colours
 
 figure
-title(name)
+title(name,'FontSize',16)
 grid on 
 hold on
 for i = 1:results.plotting.nobs
