@@ -1,5 +1,12 @@
 %% Centroids and individuals
-function glitter_plot(results, labels,shape,name)
+function glitter_plot(results,cps,labels,shape,name)
+
+%Running the glitter plot! You need:
+%    results: your results structure array from running STATIS
+%    cps: a 1x2 vector of what components to plot (for example: cps = [1,2] to plot the first 2 components)
+%    labels: your labels file/variable
+%    shape: what shape you want. For maximum glitter, I like 'p'
+%    name: the title of your plot
 
 temp = (1:results.plotting.npart);
 part_labs = cell(length(temp),1);
@@ -17,12 +24,12 @@ title(name,'FontSize',16)
 grid on 
 hold on
 for i = 1:results.plotting.nobs
-    scatter(results.F(i,1),results.F(i,2),1000,c(i),'filled',shape)
-    text(results.F(i,1),results.F(i,2), labels{i});%adding the text
+    scatter(results.F(i,cps(1)),results.F(i,cps(2)),1000,c(i),'filled',shape)
+    text(results.F(i,cps(1)),results.F(i,cps(2)), labels{i});%adding the text
 end
 for i = 1:results.plotting.npart
-    x = results.plotting.RF(:,1,i);
-    y = results.plotting.RF(:,2,i);
+    x = results.plotting.RF(:,cps(1),i);
+    y = results.plotting.RF(:,cps(2),i);
     scatter(x,y,100,c(1:results.plotting.nobs),shape,'filled')
 end
 
